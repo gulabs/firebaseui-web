@@ -159,8 +159,7 @@ firebaseui.auth.widget.handler.onMultiFactorAuthenticationFinishSubmit_ = functi
             app,
             component,
             /** @type {!firebaseui.auth.widget.Config.AuthResult} */(
-              userCredential),
-            true);
+              userCredential));
       }, firebaseui.auth.widget.handler.MFA_CODE_SUCCESS_DIALOG_DELAY);
       // On reset, clear timeout.
       app.registerPending(function() {
