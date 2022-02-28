@@ -152,9 +152,6 @@ firebaseui.auth.widget.handler.onMultiFactorAuthenticationFinishSubmit_ = functi
           firebaseui.auth.soy2.strings.dialogCodeVerified().toString());
       // Keep on display for long enough to be seen.
       var codeVerifiedTimer = setTimeout(function() {
-        // Dismiss dialog and dispose of component before completing sign-in.
-        component.dismissDialog();
-        component.dispose();
         firebaseui.auth.widget.handler.common.setLoggedInWithAuthResult(
             app,
             component,
