@@ -37,6 +37,11 @@ goog.require('firebaseui.auth.widget.handler.common');
  */
 firebaseui.auth.widget.handler.handlePasswordSignIn = function(
     app, container, opt_email, opt_displayFullTosPpMessage) {
+  var onCancel = function() {
+    component.dispose();
+    // On cancel, return to widget start page.
+    firebaseui.auth.widget.handler.common.handleSignInStart(app, container);
+  };
   // Render the UI.
   var component = new firebaseui.auth.ui.page.PasswordSignIn(
       // On submit.
@@ -51,6 +56,8 @@ firebaseui.auth.widget.handler.handlePasswordSignIn = function(
             firebaseui.auth.widget.HandlerName.PASSWORD_RECOVERY, app,
             container, email);
       },
+      // On cancel.
+      onCancel,
       opt_email,
       app.getConfig().getTosUrl(),
       app.getConfig().getPrivacyPolicyUrl(),

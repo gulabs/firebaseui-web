@@ -43,6 +43,14 @@ element.form.getSecondaryLinkElement = function() {
   return this.getElementByClass('firebaseui-id-secondary-link');
 };
 
+/**
+ * @return {Element} The tertiary link.
+ * @this {goog.ui.Component}
+ */
+ element.form.getTertiaryLinkElement = function() {
+  return this.getElementByClass('firebaseui-id-tertiary-link');
+};
+
 
 /**
  * Initializes the form element.
@@ -50,9 +58,11 @@ element.form.getSecondaryLinkElement = function() {
  *     (the submit button is clicked).
  * @param {function(?)=} opt_onLinkClick Callback to invoke when the secondary
  *     link (if there is one) in the form is clicked.
+ * @param {function(?)=} opt_onTertiaryLinkClick Callback to invoke when the teritiary
+ *     link (if there is one) in the form is clicked.
  * @this {goog.ui.Component}
  */
-element.form.initFormElement = function(onSubmit, opt_onLinkClick) {
+element.form.initFormElement = function(onSubmit, opt_onLinkClick, opt_onTertiaryLinkClick) {
   var submitElement = element.form.getSubmitElement.call(this);
   element.listenForActionEvent(this, submitElement, function(e) {
     onSubmit(e);
@@ -61,6 +71,12 @@ element.form.initFormElement = function(onSubmit, opt_onLinkClick) {
   if (linkElement && opt_onLinkClick) {
     element.listenForActionEvent(this, linkElement, function(e) {
       opt_onLinkClick(e);
+    });
+  }
+  var tertiaryLinkElement = element.form.getTertiaryLinkElement.call(this);
+  if (tertiaryLinkElement && opt_onTertiaryLinkClick) {
+    element.listenForActionEvent(this, tertiaryLinkElement, function(e) {
+      opt_onTertiaryLinkClick(e);
     });
   }
 };

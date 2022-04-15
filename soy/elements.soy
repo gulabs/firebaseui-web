@@ -451,6 +451,21 @@
   </button>
 {/template}
 
+/**
+ * Renders the tertiary cancel button.
+ */
+{template .tertiaryCancelButton}
+  {@param? label: string} /** Label of the button, defaulting to "Cancel" if not specified. */
+  <button class="firebaseui-id-tertiary-link firebaseui-button mdl-button mdl-js-button{sp}
+                 mdl-button--primary">
+    {if $label}
+      {$label}
+    {else}
+      {msg desc="Link to cancel the current flow."}Cancel{/msg}
+    {/if}
+  </button>
+{/template}
+
 
 /**
  * Renders a notice to the user about SMS rates.

@@ -37,6 +37,8 @@ firebaseui.auth.ui.page.PasswordSignIn =
    *     is clicked.
    * @param {function()} onForgotClick Callback to invoke when the forgot
    *     password link is clicked.
+   * @param {function()=} opt_onCancelClick Callback to invoke when the cancel
+   *     button is clicked.
    * @param {string=} opt_email The email to prefill.
    * @param {?function()=} opt_tosCallback Callback to invoke when the ToS link
    *     is clicked.
@@ -47,7 +49,7 @@ firebaseui.auth.ui.page.PasswordSignIn =
    * @param {goog.dom.DomHelper=} opt_domHelper Optional DOM helper.
    */
   constructor(
-      onSubmitClick, onForgotClick, opt_email, opt_tosCallback,
+      onSubmitClick, onForgotClick, opt_onCancelClick, opt_email, opt_tosCallback,
       opt_privacyPolicyCallback, opt_displayFullTosPpMessage, opt_domHelper) {
     super(
         firebaseui.auth.soy2.page.passwordSignIn, {
@@ -60,13 +62,14 @@ firebaseui.auth.ui.page.PasswordSignIn =
         });
     this.onSubmitClick_ = onSubmitClick;
     this.onForgotClick_ = onForgotClick;
+    this.onCancelClick_ = opt_onCancelClick;
   }
 
   /** @override */
   enterDocument() {
     this.initEmailElement();
     this.initPasswordElement();
-    this.initFormElement(this.onSubmitClick_, this.onForgotClick_);
+    this.initFormElement(this.onSubmitClick_, this.onForgotClick_, this.onCancelClick_);
     this.focusToNextOnEnter(this.getEmailElement(), this.getPasswordElement());
     // Submit if enter pressed in password element.
     this.submitOnEnter(this.getPasswordElement(), this.onSubmitClick_);
@@ -83,6 +86,7 @@ firebaseui.auth.ui.page.PasswordSignIn =
   disposeInternal() {
     this.onSubmitClick_ = null;
     this.onForgotClick_ = null;
+    this.onCancelClick_ = null;
     super.disposeInternal();
   }
 };
