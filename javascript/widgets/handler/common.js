@@ -113,7 +113,8 @@ firebaseui.auth.widget.handler.common.setLoggedInWithAuthResult =
     return goog.Promise.resolve();
   }
   // This should not occur.
-  if (!authResult['credential']) {
+  // WORKAROUND: To fix credential always null when use MFA
+  if (!authResult['credential'] && authResult['additionalUserInfo'].providerId !== 'password') {
     throw new Error('No credential found!');
   }
   // For any error, display in info bar message.
@@ -848,6 +849,7 @@ firebaseui.auth.widget.handler.common.handleGoogleYoloCredential =
  */
 firebaseui.auth.widget.handler.common.verifyPassword =
     function(app, component) {
+  var container = component.getContainer();
   // Check fields are valid.
   var email = component.checkAndGetEmail();
   var password = component.checkAndGetPassword();
@@ -905,6 +907,10 @@ firebaseui.auth.widget.handler.common.verifyPassword =
           return;
         }
         switch (error['code']) {
+          case 'auth/multi-factor-auth-required':
+            component.dispose();
+            firebaseui.auth.widget.handler.handle(firebaseui.auth.widget.HandlerName.MULTI_FACTOR_AUTHENTICATION_START, app, container, error.resolver);
+            break;
           case 'auth/email-already-in-use':
             // Do nothing when anonymous user is getting updated.
             // Developer should handle this in signInFailure callback.

@@ -1,6 +1,6 @@
 {
   "name": "firebaseui",
-  "version": "5.0.6",
+  "version": "5.0.7",
   "description": "Javascript library for customizable UI on top of Firebase SDK",
   "files": [
     "dist/firebaseui.js",
@@ -25,6 +25,7 @@
   "style": "dist/firebaseui.css",
   "scripts": {
     "build": "gulp",
+    "build-ja": "npm run build build-js-ja && npm run build build-npm-ja && npm run build build-esm-ja",
     "build-all": "gulp build-all",
     "build-soy": "gulp build-soy",
     "demo": "npm run build && ./buildtools/run_demo.sh",
