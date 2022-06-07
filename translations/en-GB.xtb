@@ -57,6 +57,7 @@
 <translation id="2070709910567585968">Strong passwords have at least 6 characters and a mix of letters and numbers</translation>
 <translation id="2074008538308369451">Terms of Service</translation>
 <translation id="2089802663554186342">Session ended</translation>
+<translation id="2099083590289462181">New password and confirm password do not match</translation>
 <translation id="2108717231438756650">United Kingdom</translation>
 <translation id="2120419640334291526">Cayman Islands</translation>
 <translation id="2124070231227334770">Moldova</translation>
@@ -279,6 +280,7 @@
 <translation id="5630396263271753991">Eritrea</translation>
 <translation id="5636713964613741614">Mauritius</translation>
 <translation id="5642254620426025006">Something went wrong. Please try again.</translation>
+<translation id="564933118577589309">Confirm password</translation>
 <translation id="5649486931917149784">Password</translation>
 <translation id="5664080586064341046">St Kitts</translation>
 <translation id="5668881954117611594">Back</translation>

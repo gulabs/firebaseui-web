@@ -141,6 +141,14 @@
 {/template}
 
 
+/** Error message for mismatch password. */
+{template .errorMismatchPassword kind="text"}
+  {msg desc="Error message when the user new password and confirm password do not match."}
+    New password and confirm password do not match
+  {/msg}
+{/template}
+
+
 /** Error message for too many account creation. */
 {template .errorTooManyRequestsCreateAccount kind="text"}
   {msg desc="Error message when too many accounts have been created from the same IP address."}

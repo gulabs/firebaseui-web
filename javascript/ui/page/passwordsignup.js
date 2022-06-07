@@ -24,6 +24,7 @@ goog.require('firebaseui.auth.ui.element.email');
 goog.require('firebaseui.auth.ui.element.form');
 goog.require('firebaseui.auth.ui.element.name');
 goog.require('firebaseui.auth.ui.element.newPassword');
+goog.require('firebaseui.auth.ui.element.confirmPassword');
 goog.require('firebaseui.auth.ui.page.Base');
 goog.requireType('goog.dom.DomHelper');
 
@@ -77,6 +78,7 @@ firebaseui.auth.ui.page.PasswordSignUp =
       this.initNameElement();
     }
     this.initNewPasswordElement();
+    this.initConfirmPasswordElement();
     this.initFormElement(this.onSubmitClick_, this.onCancelClick_);
     this.setupFocus_();
     super.enterDocument();
@@ -99,16 +101,20 @@ firebaseui.auth.ui.page.PasswordSignUp =
       this.focusToNextOnEnter(this.getEmailElement(), this.getNameElement());
       this.focusToNextOnEnter(
           this.getNameElement(), this.getNewPasswordElement());
+      this.focusToNextOnEnter(
+        this.getNewPasswordElement(), this.getConfirmPasswordElement());
     } else {
       this.focusToNextOnEnter(
           this.getEmailElement(), this.getNewPasswordElement());
+      this.focusToNextOnEnter(
+        this.getNewPasswordElement(), this.getConfirmPasswordElement());
     }
 
     // On enter in password element.
     // TODO: Investigate why the compiler complains about onSubmitClick_ being
     // nullable here but not in any other file.
     if (this.onSubmitClick_) {
-      this.submitOnEnter(this.getNewPasswordElement(), this.onSubmitClick_);
+      this.submitOnEnter(this.getConfirmPasswordElement(), this.onSubmitClick_);
     }
 
     // Auto focus.
@@ -118,8 +124,10 @@ firebaseui.auth.ui.page.PasswordSignUp =
         this.requireDisplayName_ &&
         !firebaseui.auth.ui.element.getInputValue(this.getNameElement())) {
       this.getNameElement().focus();
-    } else {
+    } else if(!firebaseui.auth.ui.element.getInputValue(this.getNewPasswordElement())) {
       this.getNewPasswordElement().focus();
+    } else {
+      this.getConfirmPasswordElement().focus();
     }
   }
 };
@@ -162,6 +170,18 @@ goog.mixin(
           firebaseui.auth.ui.element.newPassword.initNewPasswordElement,
       checkAndGetNewPassword:
           firebaseui.auth.ui.element.newPassword.checkAndGetNewPassword,
+
+      // For confirm password.
+      getConfirmPasswordElement:
+          firebaseui.auth.ui.element.confirmPassword.getConfirmPasswordElement,
+      getConfirmPasswordErrorElement:
+          firebaseui.auth.ui.element.confirmPassword.getConfirmPasswordErrorElement,
+      getConfirmPasswordToggleElement:
+          firebaseui.auth.ui.element.confirmPassword.getConfirmPasswordToggleElement,
+      initConfirmPasswordElement:
+          firebaseui.auth.ui.element.confirmPassword.initConfirmPasswordElement,
+      checkAndGetConfirmPassword:
+          firebaseui.auth.ui.element.confirmPassword.checkAndGetConfirmPassword,
 
 
       // For form.
