@@ -90,6 +90,7 @@ firebaseui.auth.widget.handler.onSignUpSubmit_ = function(app, component) {
   }
 
   var password = component.checkAndGetNewPassword();
+  var confirmPassword = component.checkAndGetConfirmPassword();
   if (!email) {
     component.getEmailElement().focus();
     return;
@@ -104,6 +105,10 @@ firebaseui.auth.widget.handler.onSignUpSubmit_ = function(app, component) {
   }
   if (!password) {
     component.getNewPasswordElement().focus();
+    return;
+  }
+  if (!confirmPassword) {
+    component.getConfirmPasswordElement().focus();
     return;
   }
   // Initialize an internal temporary password credential. This will be used

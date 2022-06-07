@@ -397,6 +397,39 @@
   </div>
 {/template}
 
+/**
+ * Renders a confirm password input field, where the user can show the password by clicking the toggle
+ * button.
+ */
+{template .confirmPassword}
+  {@param? label: string} /** The placeholder text in the field, defaulting to "Confirm password". */
+  <div class="firebaseui-confirm-password-component">
+    <div class="firebaseui-textfield mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <label class="mdl-textfield__label firebaseui-label" for="ui-sign-in-confirm-password-input">
+        {if $label}
+          {$label}
+        {else}
+          {msg desc="Label of a field for setting confirm password."}Confirm password{/msg}
+        {/if}
+      </label>
+      <input
+          type="password"
+          name="confirmPassword"
+          id="ui-sign-in-confirm-password-input"
+          autocomplete="confirm-password"
+          class="mdl-textfield__input firebaseui-input firebaseui-id-confirm-password">
+    </div>
+    <a href="javascript:void(0)" class="firebaseui-input-floating-button{sp}
+        firebaseui-id-confirm-password-toggle firebaseui-input-toggle-on firebaseui-input-toggle-blur">
+    </a>
+    <div class="firebaseui-error-wrapper">
+      <p class="firebaseui-error firebaseui-text-input-error firebaseui-hidden{sp}
+          firebaseui-id-confirm-password-error">
+      </p>
+    </div>
+  </div>
+{/template}
+
 
 /**
  * Renders a password input field.

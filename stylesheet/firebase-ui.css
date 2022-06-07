@@ -550,6 +550,12 @@ input.firebaseui-input-invalid{
   width: 100%;
 }
 
+.firebaseui-confirm-password-component {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+}
+
 .firebaseui-input-floating-button {
   background-position: center;
   background-repeat: no-repeat;
