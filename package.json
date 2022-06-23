@@ -57,12 +57,13 @@
     "gulp-clean-css": "^4.3.0",
     "gulp-closure-compiler": "^0.4.0",
     "gulp-concat-css": "^3.1.0",
-    "gulp-connect": "^5.5.0",
+    "gulp-connect": "^5.7.0",
     "gulp-css-flip": "^0.4.0",
     "gulp-css-inline-images": "^0.1.1",
-    "gulp-sass": "^4.1.0",
+    "gulp-sass": "^5.1.0",
     "gulp-util": "^3.0.7",
     "protractor": "^7.0.0",
+    "sass": "^1.53.0",
     "streamqueue": "^1.1.1"
   },
   "dependencies": {
