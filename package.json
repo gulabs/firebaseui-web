@@ -1,6 +1,6 @@
 {
   "name": "firebaseui",
-  "version": "5.0.9",
+  "version": "5.0.10",
   "description": "Javascript library for customizable UI on top of Firebase SDK",
   "files": [
     "dist/firebaseui.js",
