@@ -150,13 +150,19 @@ firebaseui.auth.widget.handler.onMultiFactorAuthenticationFinishSubmit_ = functi
       component.showProgressDialog(
           firebaseui.auth.ui.element.progressDialog.State.DONE,
           firebaseui.auth.soy2.strings.dialogCodeVerified().toString());
+      var authResult = (
+        /** @type {!firebaseui.auth.widget.Config.AuthResult} */ ({
+          'user': userCredential['user'],
+          'credential': userCredential['credential'],
+          'operationType': userCredential['operationType'],
+          'additionalUserInfo': userCredential['additionalUserInfo']
+        }));
       // Keep on display for long enough to be seen.
       var codeVerifiedTimer = setTimeout(function() {
         firebaseui.auth.widget.handler.common.setLoggedInWithAuthResult(
             app,
             component,
-            /** @type {!firebaseui.auth.widget.Config.AuthResult} */(
-              userCredential));
+            authResult);
       }, firebaseui.auth.widget.handler.MFA_CODE_SUCCESS_DIALOG_DELAY);
       // On reset, clear timeout.
       app.registerPending(function() {
